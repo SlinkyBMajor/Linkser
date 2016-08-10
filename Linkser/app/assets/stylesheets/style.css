@@ -1,0 +1,36 @@
+body{
+    background: #473E5B;
+}
+
+.jumbotron{
+    border-radius: 0;
+}
+
+.navbar{
+    border-radius: 0;
+}
+
+.bootstrap-tagsinput{
+    border: 2px solid #dce4ec;
+    color: #34495e;
+    font-family: "Lato", sans-serif;
+    font-size: 14px;
+    padding: 8px 0 9px 10px;
+    text-indent: 1px;
+    border-radius: 6px;
+    box-shadow: none;
+    line-height: 17px;
+    min-width: 161px;
+    text-align: left !important;
+}
+
+.tagsinput:focus{
+    border-color: #1abc9c !important;
+    box-shadow: none !important;
+}
+
+.bootstrap-tagsinput .tag{
+    font-family: "Lato", sans-serif;
+    background: #34495e;
+    color: #fff;
+}

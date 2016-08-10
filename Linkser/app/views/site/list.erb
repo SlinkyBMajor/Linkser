@@ -2,35 +2,42 @@
   <section class="jumbotron text-xs-center">
     <div class="container">
       <h1 class="jumbotron-heading">{{greeting}}</h1>
-      <p class="lead text-muted">Something short and leading about the collection below—its contents, the creator, etc.
-        Make it short and sweet, but not too short so folks don't simply skip over it entirely.</p>
-      <p>
-        <a href="#" class="btn btn-primary" ng-click="addSite()">Main call to action</a>
-        <a href="#" class="btn btn-secondary">Secondary action</a>
-      </p>
+
+      <form class="form-inline" ng-submit="addSite()">
+        <div class="form-group">
+          <input type="text" class="form-control" id="exampleInputName2" placeholder="Name" ng-model="name">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" id="exampleInputEmail2" placeholder="URL" ng-model="url">
+        </div>
+        <div class="form-group">
+          <input type="text" name="cities" class="form-control tagsinput" value="" data-role="tagsinput" placeholder="Tags" ng-model="tags">
+        </div>
+        <div class="form-group">
+          <input type="text" class="form-control" id="exampleInputEmail2" placeholder="Description" ng-model="description">
+        </div>
+        <button type="submit" class="btn btn-primary">Add</button>
+      </form>
+
     </div>
   </section>
 
 
   <div class="container">
-
-    <ul>
-      <li ng-repeat="site in sites">hej</li>
-    </ul>
-
     <div class="row">
-      <div class="col-sm-3">
+      <div class="col-sm-3" ng-repeat="site in sites">
         <div class="card">
           <div class="card-block">
-            <h4 class="card-title">Card title</h4>
-            <h6 class="card-subtitle text-muted">Support card subtitle</h6>
+            <h4 class="card-title">{{site.name}}</h4>
+            <h6 class="card-subtitle text-muted">{{site.object_type}}</h6>
           </div>
-          <img src="https://www.royalcanin.com/~/media/Royal-Canin/Product-Categories/cat-adult-landing-hero.ashx" alt="Card image" width="100%">
+          <img src="http://free.pagepeeker.com/v2/thumbs.php?size=m&url={{site.url}}" alt="Card image" width="100%">
           <div class="card-block">
-            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-              content.</p>
-            <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a>
+            <p class="card-text">{{site.description}}</p>
+            <p class="card-text">
+            <div class="tag tag-default" ng-repeat="tag in site.tags track by $index">{{tag}}</div>
+            </p>
+            <a href="http://{{site.url}}" class="card-link" target="_blank">Open</a>
           </div>
         </div>
       </div>
@@ -39,15 +46,6 @@
 
   </div>
 
-
-  <footer class="text-muted">
-    <div class="container">
-      <p class="pull-xs-right">
-        <a href="#">Back to top</a>
-      </p>
-      <p>Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
-      <p>New to Bootstrap? <a href="../../">Visit the homepage</a> or read our
-        <a href="../../getting-started/">getting started guide</a>.</p>
-    </div>
-  </footer>
 </div>
+
+<%= render 'add_site' %>

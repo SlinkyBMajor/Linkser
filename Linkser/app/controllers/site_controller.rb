@@ -1,6 +1,7 @@
 class SiteController < ApplicationController
 
-  before_action :set_site, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
+  #before_action :set_site, only: [:show, :edit, :update, :destroy]
   respond_to :html, :json
 
 
@@ -20,22 +21,29 @@ class SiteController < ApplicationController
   end
 
 
-  def add
+  def create
+
+    puts 'CALLED create'
+    puts params[:name]
 
     success = 'false'
     site = Site.new
-    site.name = 'Google'
-    site.url = 'www.google.se'
+    site.name = params[:name]
+    site.url = params[:url]
     site.category = 'search'
-    site.tags = ['search', 'test']
+    site.tags = ['test1', 'test2']
+    site.description = params[:description]
+    site.object_type = 'Normal'
+
 
     if site.save!
-      success = 'true'
+      puts 'SAVED IT'
+      respond_with site
     else
       success = 'false'
     end
 
-    render :json => {:success => success}
+    #render :json => {:success => success}
 
   end
 

@@ -6,9 +6,12 @@ Rails.application.routes.draw do
     resources :site
   end
 
-  #SITES
   get 'site/list' => 'site#list'
+
+  #SITES
+=begin
   post 'site/add' => 'site#add'
+=end
 
 
 end

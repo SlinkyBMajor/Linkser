@@ -15,5 +15,12 @@
 //= require angular
 //= require angular-animate
 //= require angular-resource
+//= require angular-route
 //= require turbolinks
+//= require bootstrap-tagsinput
 //= require_tree .
+
+
+$('input').tagsinput({
+    confirmKeys: [13, 44, 32]
+});

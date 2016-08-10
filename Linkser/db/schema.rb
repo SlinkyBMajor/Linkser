@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160809144119) do
+ActiveRecord::Schema.define(version: 20160810170312) do
 
   create_table "sites", force: :cascade do |t|
     t.string   "name"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20160809144119) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "object_type"
   end
 
 end

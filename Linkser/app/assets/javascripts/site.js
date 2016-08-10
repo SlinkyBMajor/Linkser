@@ -1,4 +1,4 @@
-var myApp = angular.module('linkser', ["ngResource"]);
+var myApp = angular.module('linkser', ['ngResource', 'ngRoute']);
 
 myApp.factory("Site", function ($resource) {
     return $resource("/api/site/:id", {id: "@id"},
@@ -14,21 +14,30 @@ myApp.controller('SiteController',
     function ($scope, Site) {
         $scope.greeting = 'hola!';
 
+        getSites = function(){
+            $scope.sites = Site.query(function () {
+                console.log($scope.sites);
 
-        $scope.sites = Site.query(function () {
-            console.log(sites);
-        }); //query() returns all the entries
+                angular.forEach($scope.sites, function (site) {
+                    site.tags = JSON.parse(site.tags);
+                });
+
+            }); //query() returns all the entries
+        };
+
+        getSites();
 
 
         $scope.addSite = function () {
-            $.ajax({
-                    method: "POST",
-                    url: "site/add",
-                    data: {name: "John", location: "Boston"}
-                })
-                .done(function (data) {
-                    console.log(data);
-                });
+            console.log($scope);
+            $scope.site = new Site();
+            $scope.site.name = $scope.name;
+            $scope.site.url = $scope.url;
+            $scope.site.description = $scope.description;
+            Site.add($scope.site);
+
+            getSites();
+
         };
 
     }
