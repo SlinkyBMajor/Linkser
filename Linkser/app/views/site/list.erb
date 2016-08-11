@@ -1,12 +1,7 @@
 <div ng-app="linkser" ng-controller="SiteController">
   <section class="jumbotron text-xs-center">
     <div class="container">
-      <h1 class="jumbotron-heading">{{greeting}}</h1>
-
       <form class="form-inline" ng-submit="addSite()">
-        <div class="form-group">
-          <input type="text" class="form-control" id="exampleInputName2" placeholder="Name" ng-model="name">
-        </div>
         <div class="form-group">
           <input type="text" class="form-control" id="exampleInputEmail2" placeholder="URL" ng-model="url">
         </div>
@@ -16,6 +11,16 @@
         <div class="form-group">
           <input type="text" class="form-control" id="exampleInputEmail2" placeholder="Description" ng-model="description">
         </div>
+
+        <div class="form-group">
+          <select class="form-control" data-toggle="select" ng-model="content_type">
+            <option value="">Content type</option>
+            <option value="Pictures">Pictures</option>
+            <option value="Videos">Videos</option>
+            <option value="Articles">Articles</option>
+          </select>
+        </div>
+
         <button type="submit" class="btn btn-primary">Add</button>
       </form>
 
@@ -24,20 +29,29 @@
 
 
   <div class="container">
-    <div class="row">
-      <div class="col-sm-3" ng-repeat="site in sites">
-        <div class="card">
-          <div class="card-block">
-            <h4 class="card-title">{{site.name}}</h4>
-            <h6 class="card-subtitle text-muted">{{site.object_type}}</h6>
+
+
+    <div class="list-group">
+      <div class="list-group-item list-group-item-action" ng-repeat="site in sites">
+        <div class="row">
+          <div class="col-md-2">
+            <a href="http://{{site.url}}" target="_blank">
+              <img src="http://free.pagepeeker.com/v2/thumbs.php?size=l&url={{site.url}}" alt="Card image" width="100%">
+            </a>
           </div>
-          <img src="http://free.pagepeeker.com/v2/thumbs.php?size=m&url={{site.url}}" alt="Card image" width="100%">
-          <div class="card-block">
-            <p class="card-text">{{site.description}}</p>
-            <p class="card-text">
-            <div class="tag tag-default" ng-repeat="tag in site.tags track by $index">{{tag}}</div>
-            </p>
-            <a href="http://{{site.url}}" class="card-link" target="_blank">Open</a>
+          <div class="col-md-7">
+            <h5 class="list-group-item-heading">{{site.name}}</h5>
+            <h6 class="text-muted">{{site.content_type}}</h6>
+            <p class="list-group-item-text">{{site.description}}</p>
+            <h6 style="margin-top: 5px;">
+              <span class="tag tag-default tag-pill" ng-repeat="tag in site.tags track by $index">{{tag}}</span>
+            </h6>
+          </div>
+          <div class="col-md-3">
+            <div class="item-menu">
+              <button ng-click="removeSite(site.id)" type="button" class="btn btn-primary btn-sm"><%= fa_icon "times" %></button>
+              <button ng-click="tagSearch('test')" type="button" class="btn btn-primary btn-sm"><%= fa_icon "search" %></button>
+            </div>
           </div>
         </div>
       </div>

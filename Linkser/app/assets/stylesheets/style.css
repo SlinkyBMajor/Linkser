@@ -1,5 +1,5 @@
 body{
-    background: #473E5B;
+    background: #306475;
 }
 
 .jumbotron{
@@ -15,12 +15,13 @@ body{
     color: #34495e;
     font-family: "Lato", sans-serif;
     font-size: 14px;
-    padding: 8px 0 9px 10px;
+    padding: 7px 0 7px 7px;
     text-indent: 1px;
     border-radius: 6px;
     box-shadow: none;
     line-height: 17px;
     min-width: 161px;
+    min-height: 38px;
     text-align: left !important;
 }
 
@@ -31,6 +32,38 @@ body{
 
 .bootstrap-tagsinput .tag{
     font-family: "Lato", sans-serif;
-    background: #34495e;
+    background: #1abc9c;
     color: #fff;
+    padding: 5px 8px 5px 8px;
+}
+
+.list-group-item{
+    background: #3C484F;
+    border: 0;
+    color: #F7F7F7;
+}
+.list-group-item-text{
+    color: #F7F7F7;
+}
+.list-group-item:hover{
+    background: #434f56;
+    border: 0;
+    color: #F7F7F7;
+}
+
+.item-menu{
+    position: absolute;
+    right: 10px;
+    top: 5px;
+    left: auto;
+}
+.item-table button{
+    margin: 4px;
+    z-index: 99999;
+}
+select.form-control:not([size]):not([multiple]){
+    background: #34495E;
+    border: 0;
+    color: #F7F7F7;
+    max-height: 38px;
 }
