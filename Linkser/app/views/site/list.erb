@@ -24,18 +24,21 @@
         <button type="submit" class="btn btn-primary">Add</button>
       </form>
 
+      <form class="form-inline" ng-submit="tagSearch()">
+        <input type="text" name="tags" class="form-control tagsinput" value="" data-role="tagsinput" placeholder="Tags" ng-model="tags">
+        <button type="submit" class="btn btn-primary">Add</button>
+      </form>
+
     </div>
   </section>
 
 
   <div class="container">
-    <div class="popover" role="tooltip"><div class="popover-arrow"></div><h3 class="popover-title">TEST</h3><div class="popover-content">SHOHSOHS</div></div>
-
     <div class="card-columns">
       <div class="card" ng-repeat="site in sites">
         <div class="item-menu">
           <a href="http://{{site.url}}" class="btn btn-primary btn-sm" target="_blank"><%= fa_icon "eye" %></a>
-          <button ng-click="tagSearch('video')" type="button" class="btn btn-primary btn-sm"><%= fa_icon "search" %></button>
+          <button ng-click="tagSearch('mail, social')" type="button" class="btn btn-primary btn-sm"><%= fa_icon "search" %></button>
           <button ng-click="removeSite(site.id)" type="button" class="btn btn-primary btn-sm"><%= fa_icon "times" %></button>
         </div>
         <img class="card-img-top" src="http://free.pagepeeker.com/v2/thumbs.php?size=l&url={{site.url}}" width="100%">
@@ -43,7 +46,9 @@
           <h4 class="card-title">{{site.name}}</h4>
           <p class="card-text">{{site.description}}</p>
           <span class="tag tag-default tag-pill" ng-repeat="tag in site.tags track by $index">{{tag}}</span>
-          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+          <p class="card-text">
+            <small class="text-muted">Last updated 3 mins ago</small>
+          </p>
         </div>
       </div>
     </div>

@@ -42,7 +42,7 @@ class SiteController < ApplicationController
     site.name = @name
     site.url = @url
     site.category = params[:category]
-    site.tags = params[:tags].split(',')
+    site.tags = params[:tags]
     site.description = params[:description]
     site.object_type = 'Normal'
     site.content_type = params[:content_type]

@@ -6,15 +6,15 @@ myApp.factory("Site", function ($resource) {
             'index': {method: 'GET', isArray: true},
             'add': {method: 'POST'},
             'show': {method: 'GET'},
-            'destroy': { method: 'DELETE' },
-            'tag_search': { method: 'GET', isArray: true }
+            'destroy': {method: 'DELETE'},
+            'tag_search': {method: 'GET', isArray: true}
         }
     );
 });
 
 myApp.controller('SiteController',
     function ($scope, Site) {
-        getSites = function(){
+        getSites = function () {
             $scope.sites = Site.query(function () {
                 console.log($scope.sites);
                 fixTags();
@@ -22,19 +22,19 @@ myApp.controller('SiteController',
         };
 
 
-        fixTags = function(){
+        fixTags = function () {
             angular.forEach($scope.sites, function (site) {
+                console.log('Test');
                 console.log(site.tags.length);
-                if(site.tags.length > 2){
-                    site.tags = JSON.parse(site.tags);
-                }
+                site.tags = site.tags.split(',');
+                console.log(site.tags);
             });
         };
 
         getSites();
 
-        $scope.tagSearch = function(tag){
-            $scope.sites = Site.tag_search({ tag: tag }, function(){
+        $scope.tagSearch = function () {
+            $scope.sites = Site.tag_search({tag: $scope.tags}, function () {
                 console.log($scope.sites);
                 fixTags();
             });
@@ -56,11 +56,11 @@ myApp.controller('SiteController',
 
         $scope.removeSite = function (site_id) {
             console.log(site_id);
-            Site.destroy({ id: site_id });
+            Site.destroy({id: site_id});
             getSites();
         };
 
-        $scope.openlink = function(id, url){
+        $scope.openlink = function (id, url) {
             $window.open('https://www.google.com', '_blank');
         };
 
