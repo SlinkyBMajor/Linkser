@@ -7,7 +7,7 @@ myApp.factory("Site", function ($resource) {
             'add': {method: 'POST'},
             'show': {method: 'GET'},
             'destroy': { method: 'DELETE' },
-            'tag_search': { method: 'POST' }
+            'tag_search': { method: 'GET', isArray: true }
         }
     );
 });
@@ -17,14 +17,18 @@ myApp.controller('SiteController',
         getSites = function(){
             $scope.sites = Site.query(function () {
                 console.log($scope.sites);
-
-                angular.forEach($scope.sites, function (site) {
-                    console.log(site.tags.length);
-                    if(site.tags.length > 2){
-                        site.tags = JSON.parse(site.tags);
-                    }
-                });
+                fixTags();
             }); //query() returns all the entries
+        };
+
+
+        fixTags = function(){
+            angular.forEach($scope.sites, function (site) {
+                console.log(site.tags.length);
+                if(site.tags.length > 2){
+                    site.tags = JSON.parse(site.tags);
+                }
+            });
         };
 
         getSites();
@@ -32,6 +36,7 @@ myApp.controller('SiteController',
         $scope.tagSearch = function(tag){
             $scope.sites = Site.tag_search({ tag: tag }, function(){
                 console.log($scope.sites);
+                fixTags();
             });
         };
 

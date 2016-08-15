@@ -1,13 +1,19 @@
 body{
-    background: #306475;
+    background: #333;
 }
 
 .jumbotron{
     border-radius: 0;
+    background: #3C484F;
 }
 
 .navbar{
     border-radius: 0;
+}
+
+.card{
+    background: #3C484F;
+    color: #fff;
 }
 
 .bootstrap-tagsinput{
@@ -66,4 +72,8 @@ select.form-control:not([size]):not([multiple]){
     border: 0;
     color: #F7F7F7;
     max-height: 38px;
+}
+
+.card-title{
+    text-transform: uppercase;
 }

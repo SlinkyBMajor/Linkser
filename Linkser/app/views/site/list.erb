@@ -29,30 +29,21 @@
 
 
   <div class="container">
+    <div class="popover" role="tooltip"><div class="popover-arrow"></div><h3 class="popover-title">TEST</h3><div class="popover-content">SHOHSOHS</div></div>
 
-
-    <div class="list-group">
-      <div class="list-group-item list-group-item-action" ng-repeat="site in sites">
-        <div class="row">
-          <div class="col-md-2">
-            <a href="http://{{site.url}}" target="_blank">
-              <img src="http://free.pagepeeker.com/v2/thumbs.php?size=l&url={{site.url}}" alt="Card image" width="100%">
-            </a>
-          </div>
-          <div class="col-md-7">
-            <h5 class="list-group-item-heading">{{site.name}}</h5>
-            <h6 class="text-muted">{{site.content_type}}</h6>
-            <p class="list-group-item-text">{{site.description}}</p>
-            <h6 style="margin-top: 5px;">
-              <span class="tag tag-default tag-pill" ng-repeat="tag in site.tags track by $index">{{tag}}</span>
-            </h6>
-          </div>
-          <div class="col-md-3">
-            <div class="item-menu">
-              <button ng-click="removeSite(site.id)" type="button" class="btn btn-primary btn-sm"><%= fa_icon "times" %></button>
-              <button ng-click="tagSearch('test')" type="button" class="btn btn-primary btn-sm"><%= fa_icon "search" %></button>
-            </div>
-          </div>
+    <div class="card-columns">
+      <div class="card" ng-repeat="site in sites">
+        <div class="item-menu">
+          <a href="http://{{site.url}}" class="btn btn-primary btn-sm" target="_blank"><%= fa_icon "eye" %></a>
+          <button ng-click="tagSearch('video')" type="button" class="btn btn-primary btn-sm"><%= fa_icon "search" %></button>
+          <button ng-click="removeSite(site.id)" type="button" class="btn btn-primary btn-sm"><%= fa_icon "times" %></button>
+        </div>
+        <img class="card-img-top" src="http://free.pagepeeker.com/v2/thumbs.php?size=l&url={{site.url}}" width="100%">
+        <div class="card-block">
+          <h4 class="card-title">{{site.name}}</h4>
+          <p class="card-text">{{site.description}}</p>
+          <span class="tag tag-default tag-pill" ng-repeat="tag in site.tags track by $index">{{tag}}</span>
+          <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
         </div>
       </div>
     </div>

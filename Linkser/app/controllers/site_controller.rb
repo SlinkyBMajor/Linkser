@@ -12,8 +12,15 @@ class SiteController < ApplicationController
   #_____CRUD_______
 
   def index
+
     puts 'RAN INDEX!!!'
-    @sites = Site.all
+
+    if params[:tag].present?
+      @sites = Site.where("tags like ?", "%#{params[:tag]}%")
+      puts @sites
+    else
+      @sites = Site.all
+    end
     render :json => @sites.to_json; return
   end
 
