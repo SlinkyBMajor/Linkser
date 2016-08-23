@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160811154604) do
+ActiveRecord::Schema.define(version: 20160823193727) do
+
+  create_table "instagram", force: :cascade do |t|
+    t.string   "name"
+    t.string   "url"
+    t.string   "times_visited"
+    t.string   "category"
+    t.string   "tags"
+    t.text     "description"
+    t.string   "content_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "sites", force: :cascade do |t|
     t.string   "name"

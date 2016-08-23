@@ -8,9 +8,16 @@ Rails.application.routes.draw do
         post :tag_search
       end
     end
+
+    resources :instagram do
+      member do
+      end
+    end
   end
 
   get 'site/list' => 'site#list'
+
+  get 'instagram/list' => 'instagram#list'
 
   #SITES
 =begin
