@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
 
-  root 'site#index'
-
   scope "api" do
     resources :site do
-      member do
-        post :tag_search
+      collection do
+        get 'search'
+        get 'visit/:id', to: 'site#visit'
       end
     end
 
@@ -15,6 +14,7 @@ Rails.application.routes.draw do
     end
   end
 
+<<<<<<< Updated upstream
   get 'site/list' => 'site#list'
 
   get 'instagram/list' => 'instagram#list'
@@ -23,6 +23,9 @@ Rails.application.routes.draw do
 =begin
   post 'site/add' => 'site#add'
 =end
+=======
+  get 'sites' => 'site#grid'
+>>>>>>> Stashed changes
 
 
 end

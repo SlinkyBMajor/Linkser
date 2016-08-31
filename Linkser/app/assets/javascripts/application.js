@@ -12,6 +12,9 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require tether
+//= require bootstrap
+//= require foundation
 //= require angular
 //= require angular-animate
 //= require angular-resource
@@ -19,8 +22,3 @@
 //= require turbolinks
 //= require bootstrap-tagsinput
 //= require_tree .
-
-
-$('input').tagsinput({
-    confirmKeys: [13, 44, 32]
-});

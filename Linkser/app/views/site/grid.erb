@@ -1,0 +1,51 @@
+<div ng-app="linkser" ng-controller="SiteController">
+
+
+  <section class="jumbotron text-xs-center">
+    <div class="container">
+
+      <form class="form-inline" ng-submit="tagSearch()">
+        <div class="form-group">
+          <input type="text" name="tags" class="form-control tagsinput" value="" data-role="tagsinput" placeholder="Tags" ng-model="tags">
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+      </form>
+
+    </div>
+  </section>
+
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-2" ng-repeat="site in sites | orderBy:'-times_visited'">
+        <div class="card card-block">
+          <span class="tag tag-info" style="position: absolute; right: 5px; bottom: 5px;">{{site.times_visited}}</span>
+          <div class="item-menu">
+            <a href="http://{{site.url}}" class="btn btn-primary btn-sm" target="_blank" ng-click="openlink(site.id)"><%= fa_icon "eye" %></a>
+            <button ng-click="removeSite(site.id)" type="button" class="btn btn-primary btn-sm"><%= fa_icon "times" %></button>
+          </div>
+          <img class="card-img-top" src="http://free.pagepeeker.com/v2/thumbs.php?size=l&url={{site.url}}" width="100%">
+          <div class="card-block">
+            <h4 class="card-title">{{site.name}}</h4>
+            <p class="card-text">{{site.description}}</p>
+            <span class="tag tag-default tag-pill" ng-repeat="tag in site.tags track by $index">{{tag}}</span>
+            <p class="card-text">
+              <small class="text-muted">Last updated 3 mins ago</small>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <%= render 'add_site' %>
+</div>
+<div class="bottom-menu">
+  <button type="button" class="btn red" id="addBtn" data-toggle="modal" data-target="#myModal">Primary</button>
+</div>
+

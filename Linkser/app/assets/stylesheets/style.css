@@ -1,22 +1,51 @@
-body{
-    background: #333;
+body {
+    background: #27363b;
 }
 
-.jumbotron{
+.jumbotron {
     border-radius: 0;
-    background: #3C484F;
+    background: #162022;
 }
 
-.navbar{
+.navbar {
     border-radius: 0;
+    background: #d97371;
 }
 
-.card{
-    background: #3C484F;
+.card {
+    background: #202b2f;
     color: #fff;
 }
 
-.bootstrap-tagsinput{
+
+.floating{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+}
+
+.dropup .dropdown-menu, .navbar-fixed-bottom .dropdown .dropdown-menu{
+    min-width: 300px;
+}
+
+
+.bottom-menu{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+
+.red{
+    background: #ED4267;
+    color: #fff;
+}
+.btn-primary{
+    background: $primary !important;
+    background-color: $primary !important;
+}
+
+.bootstrap-tagsinput {
     border: 2px solid #dce4ec;
     color: #34495e;
     font-family: "Lato", sans-serif;
@@ -29,51 +58,56 @@ body{
     min-width: 161px;
     min-height: 38px;
     text-align: left !important;
+    width: 100%;
 }
 
-.tagsinput:focus{
+.tagsinput:focus {
     border-color: #1abc9c !important;
     box-shadow: none !important;
 }
 
-.bootstrap-tagsinput .tag{
+.bootstrap-tagsinput .tag {
     font-family: "Lato", sans-serif;
     background: #1abc9c;
     color: #fff;
     padding: 5px 8px 5px 8px;
 }
 
-.list-group-item{
+.list-group-item {
     background: #3C484F;
     border: 0;
     color: #F7F7F7;
 }
-.list-group-item-text{
+
+.list-group-item-text {
     color: #F7F7F7;
 }
-.list-group-item:hover{
+
+.list-group-item:hover {
     background: #434f56;
     border: 0;
     color: #F7F7F7;
 }
 
-.item-menu{
+.item-menu {
     position: absolute;
     right: 10px;
     top: 5px;
     left: auto;
 }
-.item-table button{
+
+.item-table button {
     margin: 4px;
     z-index: 99999;
 }
-select.form-control:not([size]):not([multiple]){
+
+select.form-control:not([size]):not([multiple]) {
     background: #34495E;
     border: 0;
     color: #F7F7F7;
     max-height: 38px;
 }
 
-.card-title{
+.card-title {
     text-transform: uppercase;
 }

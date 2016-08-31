@@ -2,14 +2,20 @@ class SiteController < ApplicationController
   require 'uri'
 
   skip_before_action :verify_authenticity_token
-  before_action only: [:show, :edit, :update, :destroy, :tag_search]
+  before_action only: [:show, :edit, :update, :destroy, :tag_search, :visit]
   respond_to :html, :json
 
-  def list
+  def grid
     #VIEW FOR SHOW
   end
 
   #_____CRUD_______
+
+
+  def get
+    @site = Site.find(params[:id])
+    respond_with @site
+  end
 
   def index
 
@@ -26,7 +32,7 @@ class SiteController < ApplicationController
 
   def show
     @site = Site.find(params[:id])
-    respond_with @site
+    render :json => @site;return
   end
 
   def create
@@ -46,6 +52,7 @@ class SiteController < ApplicationController
     site.description = params[:description]
     site.object_type = 'Normal'
     site.content_type = params[:content_type]
+    site.times_visited = 0
 
     if site.save!
       puts 'SAVED IT'
@@ -72,7 +79,18 @@ class SiteController < ApplicationController
     end
   end
 
+  def visit
+    puts 'RAN VISIT'
+    @site = Site.find(params[:id])
+    @site.times_visited = @site.times_visited.to_i + 1
+    @site.save!
+
+    render :json => @site.to_json; return
+  end
+
   def tag_search
+
+    puts 'TAG SEARCH'
 
     @sites = Site.includes(:site).where('site.tags = ?', params[:tag]).references(:site)
     puts @sites

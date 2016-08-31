@@ -1,13 +1,13 @@
 var myApp = angular.module('linkser', ['ngResource', 'ngRoute']);
 
 myApp.factory("Site", function ($resource) {
-    return $resource("/api/site/:id", {id: "@id"},
+    return $resource("/api/site/:func/:id", {func: "@func", id: "@id" },
         {
-            'index': {method: 'GET', isArray: true},
             'add': {method: 'POST'},
             'show': {method: 'GET'},
             'destroy': {method: 'DELETE'},
-            'tag_search': {method: 'GET', isArray: true}
+            'search': {method: 'GET', isArray: true},
+            'visit': {method: 'GET', params:{func:"visit", id: "@id"}}
         }
     );
 });
@@ -24,17 +24,14 @@ myApp.controller('SiteController',
 
         fixTags = function () {
             angular.forEach($scope.sites, function (site) {
-                console.log('Test');
-                console.log(site.tags.length);
                 site.tags = site.tags.split(',');
-                console.log(site.tags);
             });
         };
 
         getSites();
 
         $scope.tagSearch = function () {
-            $scope.sites = Site.tag_search({tag: $scope.tags}, function () {
+            $scope.sites = Site.search({tag: $scope.tags}, function () {
                 console.log($scope.sites);
                 fixTags();
             });
@@ -60,8 +57,13 @@ myApp.controller('SiteController',
             getSites();
         };
 
-        $scope.openlink = function (id, url) {
-            $window.open('https://www.google.com', '_blank');
+        $scope.openlink = function (id) {
+            Site.visit({id: id});
+            $scope.site = Site.get({id: id});
+            console.log($scope.site);
+            $scope.site.times_visited = $scope.site.times_visited + 1;
+            getSites();
+            //$window.open('https://www.google.com', '_blank');
         };
 
     }
